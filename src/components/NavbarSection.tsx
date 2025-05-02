@@ -10,6 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from '@/components/ui/resizable-navbar';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { HeroSection } from './HeroSection';
 import { FeaturesSection } from './FeaturesSection';
@@ -18,12 +19,14 @@ import { PricingSection } from './PricingSection';
 import { GlowingEffects } from './GlowingEffects';
 import { Reviewcards } from './ReviewCard';
 import { FooterSection } from './FooterSection';
+import Link from 'next/link';
 
 export function NavbarSection() {
+  const router = useRouter();
   const navItems = [
     {
-      name: 'Features',
-      link: '#features',
+      name: 'Feed',
+      link: '/feed',
     },
     {
       name: 'Pricing',
@@ -45,8 +48,12 @@ export function NavbarSection() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Sign Up</NavbarButton>
+            <Link href="/login">
+              <NavbarButton variant="secondary">Login</NavbarButton>
+            </Link>
+            <Link href="/signup">
+              <NavbarButton variant="primary">Sign Up</NavbarButton>
+            </Link>
           </div>
         </NavBody>
 
@@ -74,13 +81,19 @@ export function NavbarSection() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  router.push('/login');
+                }}
                 variant="primary"
                 className="w-full">
                 Login
               </NavbarButton>
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  router.push('/signup');
+                }}
                 variant="primary"
                 className="w-full">
                 Sign Up
