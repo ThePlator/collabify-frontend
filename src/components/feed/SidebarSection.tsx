@@ -7,11 +7,20 @@ import {
   IconSettings,
   IconUserBolt,
   IconHome,
+  IconUsers,
+  IconBell,
+  IconMessages,
 } from '@tabler/icons-react';
+import { ConnectionSection } from './ConnectionSection';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { FeedSection } from './FeedSection';
 import { TrendingSidebar } from './TrendingSidebar';
+import { usePathname } from 'next/navigation';
+import { ProfileSection } from './ProfileSection';
+import { DashboardSection } from './DashboardSection';
+import { NotificationsSection } from './NotificationsSection';
+import { MessagesSection } from './MessagesSection';
 
 export function SidebarSection() {
   const links = [
@@ -24,16 +33,30 @@ export function SidebarSection() {
     },
     {
       label: 'Dashboard',
-      href: '#',
+      href: '/dashboard',
       icon: (
         <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
-      label: 'Profile',
-      href: '#',
+      label: 'Messages',
+      href: '/messages',
       icon: (
-        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconMessages className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Connection',
+      href: '/connections',
+      icon: (
+        <IconUsers className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Notifications',
+      href: '/notifications',
+      icon: (
+        <IconBell className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
@@ -72,7 +95,7 @@ export function SidebarSection() {
             <SidebarLink
               link={{
                 label: 'Manu Arora',
-                href: '#',
+                href: '/profile',
                 icon: (
                   <img
                     src="https://assets.aceternity.com/manu.png"
@@ -118,13 +141,27 @@ export const LogoIcon = () => {
 
 // Dummy dashboard component with content
 const Dashboard = () => {
+  const pathname = usePathname();
+
   return (
     <div className="flex flex-1 overflow-hidden">
       <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-200 bg-white p-2 md:p-10 dark:border-neutral-700 dark:bg-neutral-900 overflow-y-auto scrollbar-none">
-        <FeedSection />
+        {pathname === '/feed' ? (
+          <FeedSection />
+        ) : pathname === '/profile' ? (
+          <ProfileSection />
+        ) : pathname === '/dashboard' ? (
+          <DashboardSection />
+        ) : pathname === '/connections' ? (
+          <ConnectionSection />
+        ) : pathname === '/notifications' ? (
+          <NotificationsSection />
+        ) : pathname === '/messages' ? (
+          <MessagesSection />
+        ) : null}
       </div>
-      <div className="hidden lg:block">
-        <TrendingSidebar />
+      <div className="hidden lg:block overflow-y-auto">
+        {pathname === '/feed' && <TrendingSidebar />}
       </div>
     </div>
   );
