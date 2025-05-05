@@ -10,6 +10,9 @@ import {
   IconUsers,
   IconBell,
   IconMessages,
+  IconBriefcase,
+  IconShoppingCart,
+  IconHeadset,
 } from '@tabler/icons-react';
 import { ConnectionSection } from './ConnectionSection';
 import { motion } from 'motion/react';
@@ -21,6 +24,11 @@ import { ProfileSection } from './ProfileSection';
 import { DashboardSection } from './DashboardSection';
 import { NotificationsSection } from './NotificationsSection';
 import { MessagesSection } from './MessagesSection';
+import { FreelancingSection } from './FreelancingSection';
+import { JobsSection } from './JobsSection';
+import { MarketplaceSection } from './MarketplaceSection';
+import { ShoppingCartSection } from './ShoppingCartSection';
+import { SupportSection } from './SupportSection';
 
 export function SidebarSection() {
   const links = [
@@ -60,10 +68,31 @@ export function SidebarSection() {
       ),
     },
     {
-      label: 'Settings',
-      href: '#',
+      label: 'Freelancing',
+      href: '/freelancing',
       icon: (
-        <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+        <IconUserBolt className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Jobs',
+      href: '/jobs',
+      icon: (
+        <IconBriefcase className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Marketplace',
+      href: '/marketplace',
+      icon: (
+        <IconShoppingCart className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Support',
+      href: '/support',
+      icon: (
+        <IconHeadset className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
@@ -158,6 +187,16 @@ const Dashboard = () => {
           <NotificationsSection />
         ) : pathname === '/messages' ? (
           <MessagesSection />
+        ) : pathname === '/freelancing' ? (
+          <FreelancingSection />
+        ) : pathname === '/jobs' ? (
+          <JobsSection />
+        ) : pathname === '/marketplace' ? (
+          <MarketplaceSection />
+        ) : pathname === '/shoppingcart' ? (
+          <ShoppingCartSection />
+        ) : pathname === '/support' ? (
+          <SupportSection />
         ) : null}
       </div>
       <div className="hidden lg:block overflow-y-auto">
