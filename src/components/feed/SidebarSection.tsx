@@ -13,7 +13,10 @@ import {
   IconBriefcase,
   IconShoppingCart,
   IconHeadset,
+  IconSun,
+  IconMoon,
 } from '@tabler/icons-react';
+import { useTheme } from 'next-themes';
 import { ConnectionSection } from './ConnectionSection';
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
@@ -104,6 +107,12 @@ export function SidebarSection() {
     },
   ];
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
     <div
       className={cn(
@@ -118,6 +127,21 @@ export function SidebarSection() {
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
               ))}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors">
+                {theme === 'dark' ? (
+                  <IconSun className="h-5 w-5 shrink-0" />
+                ) : (
+                  <IconMoon className="h-5 w-5 shrink-0" />
+                )}
+                <span
+                  className={
+                    open ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'
+                  }>
+                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </span>
+              </button>
             </div>
           </div>
           <div>

@@ -33,8 +33,8 @@ export function NavbarSection() {
       link: '#pricing',
     },
     {
-      name: 'Contact',
-      link: '#contact',
+      name: 'Admin',
+      link: '/admin',
     },
   ];
 
