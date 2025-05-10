@@ -136,7 +136,7 @@ export function MessagesSection() {
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8 text-3xl font-bold text-neutral-900 dark:text-white">
+        className="mb-8 text-3xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
         Messages
       </motion.h1>
 
@@ -152,7 +152,7 @@ export function MessagesSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               onClick={() => setSelectedChat(message.id)}
-              className={`rounded-xl border border-neutral-200 bg-white p-4 hover:bg-neutral-50 cursor-pointer transition-colors dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700 ${
+              className={`rounded-xl border border-neutral-200/50 bg-gradient-to-br from-white to-neutral-50 p-4 shadow-sm hover:shadow-md cursor-pointer transition-all duration-300 dark:border-neutral-700/50 dark:from-neutral-800 dark:to-neutral-900 ${
                 selectedChat === message.id
                   ? 'border-blue-500 dark:border-blue-500'
                   : ''
@@ -161,7 +161,7 @@ export function MessagesSection() {
                 <img
                   src={message.sender.avatar}
                   alt={message.sender.name}
-                  className="h-12 w-12 rounded-full"
+                  className="h-12 w-12 rounded-full ring-2 ring-offset-2 ring-indigo-500/20 dark:ring-indigo-400/20"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
@@ -170,7 +170,7 @@ export function MessagesSection() {
                     </h2>
                     <div className="flex items-center gap-2">
                       {message.unread ? (
-                        <span className="h-2 w-2 rounded-full bg-blue-500" />
+                        <span className="h-2 w-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 animate-pulse" />
                       ) : (
                         <IconCheck className="h-4 w-4 text-neutral-500" />
                       )}
@@ -195,9 +195,9 @@ export function MessagesSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex-1 w-full md:w-2/3">
-            <div className="rounded-xl border border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-800 h-[600px] flex flex-col">
+            <div className="rounded-xl border border-neutral-200/50 bg-gradient-to-br from-white to-neutral-50 dark:border-neutral-700/50 dark:from-neutral-800 dark:to-neutral-900 h-[600px] flex flex-col shadow-lg">
               {/* Chat Header */}
-              <div className="p-4 border-b border-neutral-200 dark:border-neutral-700">
+              <div className="p-4 border-b border-neutral-200/50 dark:border-neutral-700/50 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30">
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setSelectedChat(null)}
@@ -249,7 +249,7 @@ export function MessagesSection() {
                     <div
                       className={`max-w-[70%] rounded-lg p-3 ${
                         msg.senderId === 'me'
-                          ? 'bg-blue-500 text-white'
+                          ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-sm'
                           : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white'
                       }`}>
                       <p className="text-sm">{msg.content}</p>
@@ -280,7 +280,7 @@ export function MessagesSection() {
                   <button
                     onClick={handleSendMessage}
                     disabled={!newMessage.trim()}
-                    className="rounded-lg bg-blue-500 p-2 text-white transition-colors hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
+                    className="rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 p-2 text-white shadow-md hover:shadow-lg transition-all duration-300 hover:from-indigo-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed">
                     <IconSend className="h-5 w-5" />
                   </button>
                 </div>

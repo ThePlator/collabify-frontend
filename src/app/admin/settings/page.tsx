@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import {
   IconBell,
   IconLock,
@@ -99,82 +100,107 @@ export default function SettingsPage() {
   const [sessionTimeout, setSessionTimeout] = useState('30');
 
   return (
-    <div className="p-6">
-      <h1 className="mb-6 text-2xl font-semibold text-neutral-900 dark:text-white">
+    <div className="p-6 min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900">
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-6 text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
         Settings
-      </h1>
+      </motion.h1>
 
-      <div className="grid gap-6 lg:grid-cols-[240px,1fr]">
-        <nav className="space-y-1">
-          {tabs.map((tab) => (
-            <button
+      <div className="grid gap-6 lg:grid-cols-[280px,1fr]">
+        <motion.nav
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="space-y-2 bg-white/50 dark:bg-neutral-800/50 p-4 rounded-xl border border-neutral-200/50 dark:border-neutral-700/50 backdrop-blur-sm">
+          {tabs.map((tab, index) => (
+            <motion.button
               key={tab.id}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-black text-white dark:bg-white dark:text-black'
-                  : 'text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700'
+                  ? 'bg-gradient-to-r from-neutral-900 to-neutral-800 text-white shadow-lg dark:from-white dark:to-neutral-200 dark:text-neutral-900'
+                  : 'text-neutral-600 hover:bg-white hover:shadow-md dark:text-neutral-300 dark:hover:bg-neutral-700/50'
               }`}>
               {tab.icon}
               {tab.label}
-            </button>
+            </motion.button>
           ))}
-        </nav>
+        </motion.nav>
 
-        <div className="space-y-6 rounded-lg border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="space-y-6 rounded-xl border border-neutral-200/50 bg-white/50 p-8 shadow-xl backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/50">
           {activeTab === 'general' && (
-            <div className="space-y-6">
-              <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="space-y-8">
+              <div className="group rounded-lg border border-neutral-200/50 bg-white/30 p-6 transition-all duration-300 hover:bg-white/50 dark:border-neutral-700/50 dark:bg-neutral-800/30 dark:hover:bg-neutral-800/50">
                 <label
                   htmlFor="siteName"
-                  className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white">
+                  className="mb-2 block text-sm font-medium bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
                   Site Name
                 </label>
                 <input
                   type="text"
                   id="siteName"
-                  className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-black focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:border-white"
+                  className="w-full rounded-lg border border-neutral-200/50 bg-white/50 px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-300 focus:border-neutral-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900/10 hover:bg-white dark:border-neutral-700/50 dark:bg-neutral-800/50 dark:text-white dark:placeholder-neutral-500 dark:focus:border-white dark:focus:bg-neutral-800 dark:focus:ring-white/10 dark:hover:bg-neutral-800"
                   placeholder="Enter site name"
                 />
               </div>
 
-              <div>
+              <div className="group rounded-lg border border-neutral-200/50 bg-white/30 p-6 transition-all duration-300 hover:bg-white/50 dark:border-neutral-700/50 dark:bg-neutral-800/30 dark:hover:bg-neutral-800/50">
                 <label
                   htmlFor="description"
-                  className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white">
+                  className="mb-2 block text-sm font-medium bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
                   Site Description
                 </label>
                 <textarea
                   id="description"
                   rows={4}
-                  className="w-full rounded-lg border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-900 focus:border-black focus:outline-none dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:focus:border-white"
+                  className="w-full rounded-lg border border-neutral-200/50 bg-white/50 px-4 py-3 text-sm text-neutral-900 placeholder-neutral-400 transition-all duration-300 focus:border-neutral-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900/10 hover:bg-white dark:border-neutral-700/50 dark:bg-neutral-800/50 dark:text-white dark:placeholder-neutral-500 dark:focus:border-white dark:focus:bg-neutral-800 dark:focus:ring-white/10 dark:hover:bg-neutral-800"
                   placeholder="Enter site description"
                 />
               </div>
 
-              <div>
-                <label className="mb-2 block text-sm font-medium text-neutral-900 dark:text-white">
+              <div className="group rounded-lg border border-neutral-200/50 bg-white/30 p-6 transition-all duration-300 hover:bg-white/50 dark:border-neutral-700/50 dark:bg-neutral-800/30 dark:hover:bg-neutral-800/50">
+                <label className="mb-2 block text-sm font-medium bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
                   Maintenance Mode
                 </label>
                 <div className="flex items-center gap-3">
-                  <button className="rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-neutral-600 transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700">
+                  <button className="flex-1 rounded-lg border border-neutral-200/50 bg-white/50 px-4 py-3 text-sm font-medium text-neutral-600 shadow-sm transition-all duration-300 hover:bg-white hover:shadow-md dark:border-neutral-700/50 dark:bg-neutral-800/50 dark:text-neutral-300 dark:hover:bg-neutral-700">
                     Enable
                   </button>
-                  <button className="rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200">
+                  <button className="flex-1 rounded-lg bg-gradient-to-r from-neutral-900 to-neutral-800 px-4 py-3 text-sm font-medium text-white shadow-sm transition-all duration-300 hover:shadow-md dark:from-white dark:to-neutral-200 dark:text-neutral-900">
                     Disable
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* Add content for other tabs */}
           {activeTab !== 'general' && (
-            <div className="flex h-[300px] items-center justify-center text-sm text-neutral-600 dark:text-neutral-300">
-              Content for {activeTab} settings will be implemented here
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex h-[400px] items-center justify-center rounded-lg border border-neutral-200/50 bg-white/30 p-6 text-sm text-neutral-600 backdrop-blur-sm dark:border-neutral-700/50 dark:bg-neutral-800/30 dark:text-neutral-300">
+              <div className="text-center">
+                <div className="mb-4 text-4xl opacity-50">
+                  {tabs.find((t) => t.id === activeTab)?.icon}
+                </div>
+                <p className="font-medium">
+                  Content for {activeTab} settings will be implemented here
+                </p>
+              </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

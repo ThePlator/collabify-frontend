@@ -8,6 +8,7 @@ import {
   IconX,
   IconEye,
 } from '@tabler/icons-react';
+import { motion } from 'motion/react';
 
 interface Product {
   id: string;
@@ -126,9 +127,12 @@ export default function ProductsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.map((product) => (
-          <div
+          <motion.div
             key={product.id}
-            className="rounded-lg border border-neutral-200 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-800">
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="group relative overflow-hidden rounded-xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50/80 p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-neutral-300 dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900/80 dark:shadow-neutral-900/30 dark:hover:border-neutral-600">
             <div className="mb-3 flex items-start justify-between">
               <div>
                 <h3 className="font-semibold text-neutral-900 dark:text-white">
@@ -180,7 +184,7 @@ export default function ProductsPage() {
                 <IconEye className="h-4 w-4" />
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

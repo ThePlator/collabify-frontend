@@ -15,6 +15,7 @@ import {
   IconCalendar,
   IconCurrencyDollar,
 } from '@tabler/icons-react';
+import { motion } from 'motion/react';
 
 export default function JobsPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,7 +74,7 @@ export default function JobsPage() {
   return (
     <div className="p-6">
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-neutral-900 dark:text-white">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
           Job Approvals
         </h1>
         <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-300">
@@ -108,69 +109,75 @@ export default function JobsPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {jobs.map((job) => (
-          <div
+        {jobs.map((job, idx) => (
+          <motion.div
             key={job.id}
-            className="rounded-lg border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
-            <div className="mb-4 flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-medium text-neutral-900 dark:text-white">
-                  {job.title}
-                </h3>
-                <div className="mt-1 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
-                  <IconBuilding className="h-4 w-4" />
-                  {job.company}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.1 }}
+            className="group relative overflow-hidden rounded-xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50/80 p-6 shadow-lg transition-all duration-300 hover:shadow-xl hover:border-neutral-300 dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900/80 dark:shadow-neutral-900/30 dark:hover:border-neutral-600">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 to-blue-50/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:from-blue-900/20 dark:to-blue-800/10"></div>
+            <div className="relative z-10">
+              <div className="mb-4 flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-medium bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-300">
+                    {job.title}
+                  </h3>
+                  <div className="mt-1 flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
+                    <IconBuilding className="h-4 w-4" />
+                    {job.company}
+                  </div>
+                </div>
+                <span
+                  className={`inline-flex rounded-full px-2.5 py-1 text-xs font-medium ${getStatusColor(
+                    job.status
+                  )}`}>
+                  {job.status}
+                </span>
+              </div>
+
+              <div className="mb-4 space-y-3 text-sm">
+                <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400">
+                  <IconMapPin className="h-4 w-4" />
+                  {job.location}
+                </div>
+                <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400">
+                  <IconBriefcase className="h-4 w-4" />
+                  {job.type}
+                </div>
+                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-medium">
+                  <IconCurrencyDollar className="h-4 w-4" />
+                  {job.salary}
+                </div>
+                <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400">
+                  <IconMail className="h-4 w-4" />
+                  {job.submittedBy}
+                </div>
+                <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300 transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400">
+                  <IconCalendar className="h-4 w-4" />
+                  {job.submissionDate}
                 </div>
               </div>
-              <span
-                className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${getStatusColor(
-                  job.status
-                )}`}>
-                {job.status}
-              </span>
-            </div>
 
-            <div className="mb-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
               <div className="flex items-center gap-2">
-                <IconMapPin className="h-4 w-4" />
-                {job.location}
-              </div>
-              <div className="flex items-center gap-2">
-                <IconBriefcase className="h-4 w-4" />
-                {job.type}
-              </div>
-              <div className="flex items-center gap-2">
-                <IconCurrencyDollar className="h-4 w-4" />
-                {job.salary}
-              </div>
-              <div className="flex items-center gap-2">
-                <IconMail className="h-4 w-4" />
-                {job.submittedBy}
-              </div>
-              <div className="flex items-center gap-2">
-                <IconCalendar className="h-4 w-4" />
-                {job.submissionDate}
+                <button
+                  className="flex-1 rounded-lg bg-gradient-to-r from-green-500 to-emerald-600 py-2 text-sm font-medium text-white transition-all duration-300 hover:from-green-600 hover:to-emerald-700 hover:shadow-lg hover:shadow-green-500/30 dark:hover:shadow-green-800/30"
+                  title="Approve">
+                  <IconCheck className="mx-auto h-4 w-4" />
+                </button>
+                <button
+                  className="flex-1 rounded-lg bg-gradient-to-r from-red-500 to-rose-600 py-2 text-sm font-medium text-white transition-all duration-300 hover:from-red-600 hover:to-rose-700 hover:shadow-lg hover:shadow-red-500/30 dark:hover:shadow-red-800/30"
+                  title="Reject">
+                  <IconX className="mx-auto h-4 w-4" />
+                </button>
+                <button
+                  className="flex-1 rounded-lg bg-gradient-to-r from-neutral-400 to-neutral-500 py-2 text-sm font-medium text-white transition-all duration-300 hover:from-neutral-500 hover:to-neutral-600 hover:shadow-lg hover:shadow-neutral-500/30 dark:from-neutral-600 dark:to-neutral-700 dark:hover:from-neutral-700 dark:hover:to-neutral-800 dark:hover:shadow-neutral-800/30"
+                  title="View Details">
+                  <IconEye className="mx-auto h-4 w-4" />
+                </button>
               </div>
             </div>
-
-            <div className="flex items-center gap-2">
-              <button
-                className="flex-1 rounded-lg bg-green-100 py-2 text-sm font-medium text-green-700 transition-colors hover:bg-green-200 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-800"
-                title="Approve">
-                <IconCheck className="mx-auto h-4 w-4" />
-              </button>
-              <button
-                className="flex-1 rounded-lg bg-red-100 py-2 text-sm font-medium text-red-700 transition-colors hover:bg-red-200 dark:bg-red-900 dark:text-red-300 dark:hover:bg-red-800"
-                title="Reject">
-                <IconX className="mx-auto h-4 w-4" />
-              </button>
-              <button
-                className="flex-1 rounded-lg bg-neutral-100 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-600"
-                title="View Details">
-                <IconEye className="mx-auto h-4 w-4" />
-              </button>
-            </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

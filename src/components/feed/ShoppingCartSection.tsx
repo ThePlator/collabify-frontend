@@ -92,29 +92,31 @@ export function ShoppingCartSection() {
                       {item.description}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <div className="text-lg font-semibold text-neutral-900 dark:text-white">
+                      <div className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                         ${item.price.toFixed(2)}
                       </div>
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => updateQuantity(item.id, -1)}
-                          className="p-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-700">
-                          <IconMinus className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                        </button>
-                        <span className="w-8 text-center text-neutral-900 dark:text-white">
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() => updateQuantity(item.id, 1)}
-                          className="p-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-700">
-                          <IconPlus className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
-                        </button>
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center bg-white/30 dark:bg-neutral-800/30 rounded-lg p-1 border border-neutral-200/50 dark:border-neutral-700/50">
+                          <button
+                            onClick={() => updateQuantity(item.id, -1)}
+                            className="p-1.5 rounded-md hover:bg-white/80 dark:hover:bg-neutral-700/80 transition-all duration-300">
+                            <IconMinus className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                          </button>
+                          <span className="w-8 text-center font-medium text-neutral-900 dark:text-white">
+                            {item.quantity}
+                          </span>
+                          <button
+                            onClick={() => updateQuantity(item.id, 1)}
+                            className="p-1.5 rounded-md hover:bg-white/80 dark:hover:bg-neutral-700/80 transition-all duration-300">
+                            <IconPlus className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                          </button>
+                        </div>
                         <button
                           onClick={() =>
                             updateQuantity(item.id, -item.quantity)
                           }
-                          className="p-1 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-700 ml-2">
-                          <IconTrash className="h-4 w-4 text-red-500" />
+                          className="p-2 rounded-lg bg-red-100/50 hover:bg-red-100 dark:bg-red-900/30 dark:hover:bg-red-900/50 transition-all duration-300 group/delete">
+                          <IconTrash className="h-4 w-4 text-red-500 group-hover/delete:text-red-600 dark:text-red-400 dark:group-hover/delete:text-red-300" />
                         </button>
                       </div>
                     </div>

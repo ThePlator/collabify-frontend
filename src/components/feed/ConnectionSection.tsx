@@ -1,15 +1,28 @@
 'use client';
 import React from 'react';
 import { motion } from 'motion/react';
-import { IconUserPlus, IconCheck } from '@tabler/icons-react';
+import {
+  IconUserPlus,
+  IconCheck,
+  IconX,
+  IconBriefcase,
+  IconMapPin,
+} from '@tabler/icons-react';
 
 interface Connection {
   id: string;
   name: string;
   role: string;
-  company: string;
+  location: string;
   avatar: string;
+  mutualConnections: number;
+  isPending: boolean;
+  company?: string;
   isConnected: boolean;
+  skills: string[];
+  endorsements: number;
+  lastActive: string;
+  sharedInterests: string[];
 }
 
 export function ConnectionSection() {
@@ -17,38 +30,50 @@ export function ConnectionSection() {
     {
       id: '1',
       name: 'Alex Thompson',
-      role: 'Frontend Developer',
-      company: 'TechCorp',
+      role: 'Senior Frontend Developer',
+      location: 'San Francisco, CA',
       avatar:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200',
-      isConnected: true,
+      mutualConnections: 15,
+      isPending: true,
+      isConnected: false,
+      company: 'TechCorp',
+      skills: ['React', 'TypeScript', 'Next.js'],
+      endorsements: 45,
+      lastActive: '2 hours ago',
+      sharedInterests: ['Web Development', 'UI/UX', 'Open Source'],
     },
     {
       id: '2',
-      name: 'Sarah Chen',
+      name: 'Maria Garcia',
       role: 'UX Designer',
-      company: 'DesignHub',
+      location: 'New York, NY',
       avatar:
         'https://images.unsplash.com/photo-1494790108377-be9c29b29330?fit=crop&w=200&h=200',
+      mutualConnections: 23,
+      isPending: true,
       isConnected: false,
+      company: 'DesignStudio',
+      skills: ['Figma', 'User Research', 'Design Systems'],
+      endorsements: 38,
+      lastActive: '1 day ago',
+      sharedInterests: ['Design Thinking', 'Accessibility', 'Product Design'],
     },
     {
       id: '3',
-      name: 'Michael Rodriguez',
-      role: 'Backend Developer',
-      company: 'ServerLogic',
+      name: 'James Wilson',
+      role: 'Full Stack Developer',
+      location: 'London, UK',
       avatar:
         'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fit=crop&w=200&h=200',
-      isConnected: true,
-    },
-    {
-      id: '4',
-      name: 'Emily Parker',
-      role: 'Product Manager',
-      company: 'InnovateTech',
-      avatar:
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?fit=crop&w=200&h=200',
+      mutualConnections: 8,
+      isPending: true,
       isConnected: false,
+      company: 'GlobalTech',
+      skills: ['Node.js', 'Python', 'AWS'],
+      endorsements: 29,
+      lastActive: '3 days ago',
+      sharedInterests: ['Cloud Computing', 'DevOps', 'Machine Learning'],
     },
   ];
 
@@ -82,9 +107,32 @@ export function ConnectionSection() {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
                   {connection.role}
                 </p>
-                <p className="text-sm text-neutral-500 dark:text-neutral-500">
+                <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-500">
+                  <IconBriefcase className="h-4 w-4" />
                   {connection.company}
-                </p>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-500">
+                  <IconMapPin className="h-4 w-4" />
+                  {connection.location}
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 space-y-3">
+              <div className="flex flex-wrap gap-2">
+                {connection.skills.map((skill, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center justify-between text-sm text-neutral-600 dark:text-neutral-400">
+                <span>{connection.mutualConnections} mutual connections</span>
+                <span>{connection.endorsements} endorsements</span>
+              </div>
+              <div className="text-xs text-neutral-500 dark:text-neutral-500">
+                Last active {connection.lastActive}
               </div>
             </div>
             <div className="mt-4">

@@ -169,16 +169,22 @@ export function ProfileSection() {
   return (
     <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       {/* Profile Header */}
-      <div className="relative mb-8">
-        <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-2xl" />
+      <div className="relative mb-8 group">
+        <div className="h-32 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 rounded-t-2xl shadow-lg transform transition-all duration-300 group-hover:scale-[1.01] group-hover:shadow-xl" />
         <div className="absolute -bottom-16 left-8">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            src={userData.avatar}
-            alt={userData.name}
-            className="h-32 w-32 rounded-full border-4 border-white dark:border-neutral-900 shadow-lg"
-          />
+          <motion.div
+            className="relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
+            <div className="absolute -inset-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-300" />
+            <motion.img
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              src={userData.avatar}
+              alt={userData.name}
+              className="relative h-32 w-32 rounded-full border-4 border-white dark:border-neutral-900 shadow-lg object-cover"
+            />
+          </motion.div>
         </div>
         <div className="absolute top-4 right-4">
           {!isEditing ? (
@@ -300,20 +306,26 @@ export function ProfileSection() {
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.1 }}
-            className="bg-white dark:bg-neutral-800 rounded-xl p-4 text-center shadow-sm">
-            <div className="text-2xl font-bold text-neutral-900 dark:text-white">
+            whileHover={{ y: -5, scale: 1.02 }}
+            transition={{
+              delay: idx * 0.1,
+              type: 'spring',
+              stiffness: 300,
+              damping: 20,
+            }}
+            className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl p-4 text-center shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/50 group">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
               {stat.value.toLocaleString()}
             </div>
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+            <div className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mt-1 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
               {stat.label}
             </div>
           </motion.div>
         ))}
       </div>
       {/* Bio */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 mb-8 shadow-sm">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl p-6 mb-8 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/50">
+        <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
           About
         </h2>
         {isEditing ? (
@@ -332,8 +344,8 @@ export function ProfileSection() {
         )}
       </div>
       {/* Skills */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 mb-8 shadow-sm">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl p-6 mb-8 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/50">
+        <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
           Skills
         </h2>
         <div className="space-y-4">
@@ -365,8 +377,8 @@ export function ProfileSection() {
         </div>
       </div>
       {/* Certifications */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 mb-8 shadow-sm">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl p-6 mb-8 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/50">
+        <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
           Certifications
         </h2>
         <div className="space-y-6">
@@ -404,8 +416,8 @@ export function ProfileSection() {
           ))}
         </div>
       </div>
-      <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 mb-8 shadow-sm">
-        <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
+      <div className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl p-6 mb-8 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm border border-neutral-200/50 dark:border-neutral-700/50">
+        <h2 className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4">
           Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -414,13 +426,20 @@ export function ProfileSection() {
               key={project.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              className="overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-shadow">
-              <div className="relative h-48 overflow-hidden">
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{
+                delay: idx * 0.1,
+                type: 'spring',
+                stiffness: 300,
+                damping: 20,
+              }}
+              className="group overflow-hidden rounded-xl border border-neutral-200/50 dark:border-neutral-700/50 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 backdrop-blur-sm">
+              <div className="relative h-48 overflow-hidden rounded-t-xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
               <div className="p-4">

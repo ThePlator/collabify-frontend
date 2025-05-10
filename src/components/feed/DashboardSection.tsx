@@ -14,6 +14,8 @@ interface DashboardCard {
   value: string;
   change: number;
   icon: React.ReactNode;
+  bgColor: string;
+  borderColor: string;
 }
 
 interface ActivityItem {
@@ -30,24 +32,32 @@ export function DashboardSection() {
       value: '2,847',
       change: 12,
       icon: <IconEye className="h-6 w-6 text-blue-500" />,
+      bgColor: 'bg-blue-50 dark:bg-blue-900/20',
+      borderColor: 'border-blue-100 dark:border-blue-800',
     },
     {
       title: 'Connections',
       value: '486',
       change: 8,
-      icon: <IconUsers className="h-6 w-6 text-green-500" />,
+      icon: <IconUsers className="h-6 w-6 text-emerald-500" />,
+      bgColor: 'bg-emerald-50 dark:bg-emerald-900/20',
+      borderColor: 'border-emerald-100 dark:border-emerald-800',
     },
     {
       title: 'Job Applications',
       value: '24',
       change: -3,
-      icon: <IconBriefcase className="h-6 w-6 text-yellow-500" />,
+      icon: <IconBriefcase className="h-6 w-6 text-amber-500" />,
+      bgColor: 'bg-amber-50 dark:bg-amber-900/20',
+      borderColor: 'border-amber-100 dark:border-amber-800',
     },
     {
       title: 'Average Rating',
       value: '4.8',
       change: 0.2,
       icon: <IconStar className="h-6 w-6 text-purple-500" />,
+      bgColor: 'bg-purple-50 dark:bg-purple-900/20',
+      borderColor: 'border-purple-100 dark:border-purple-800',
     },
   ];
 
@@ -89,9 +99,14 @@ export function DashboardSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.1 }}
-            className="rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+            className={`rounded-xl border ${
+              card.borderColor || 'border-neutral-200 dark:border-neutral-700'
+            } bg-white p-6 dark:bg-neutral-800`}>
             <div className="flex items-center justify-between">
-              <div className="rounded-lg bg-neutral-100 p-3 dark:bg-neutral-700">
+              <div
+                className={`rounded-lg ${
+                  card.bgColor || 'bg-neutral-100 dark:bg-neutral-700'
+                } p-3`}>
                 {card.icon}
               </div>
               <div
@@ -121,7 +136,7 @@ export function DashboardSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="mt-8 rounded-xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+        className="mt-8 rounded-xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50 p-6 dark:border-neutral-700 dark:bg-gradient-to-br dark:from-neutral-800 dark:to-neutral-900">
         <h2 className="mb-6 text-xl font-semibold text-neutral-900 dark:text-white">
           Recent Activity
         </h2>

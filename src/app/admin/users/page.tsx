@@ -15,6 +15,7 @@ import {
   IconClock,
   IconChevronRight,
 } from '@tabler/icons-react';
+import { motion } from 'motion/react';
 
 export default function UsersPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -129,19 +130,30 @@ export default function UsersPage() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="rounded-lg border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
-              <div className="mb-4 rounded-lg bg-neutral-100 p-2 w-fit dark:bg-neutral-700">
-                {stat.icon}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-white to-neutral-50/80 p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:from-neutral-800 dark:to-neutral-900/80 dark:shadow-neutral-900/30">
+              <div className="absolute inset-0 bg-gradient-to-br from-neutral-100 to-neutral-50 opacity-0 transition-opacity duration-300 group-hover:opacity-10 dark:from-neutral-700 dark:to-neutral-800"></div>
+              <div className="relative z-10">
+                <div className="flex items-center justify-between">
+                  <div className="mb-4 rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 p-3 text-blue-600 shadow-sm transition-transform duration-300 group-hover:scale-110 dark:from-blue-900/30 dark:to-blue-800/30 dark:text-blue-400">
+                    {stat.icon}
+                  </div>
+                  <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
+                    +{Math.floor(Math.random() * 20)}%
+                  </div>
+                </div>
+                <p className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+                  {stat.label}
+                </p>
+                <p className="mt-2 text-3xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
+                  {stat.value}
+                </p>
               </div>
-              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
-                {stat.label}
-              </p>
-              <p className="text-2xl font-semibold text-neutral-900 dark:text-white">
-                {stat.value}
-              </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -215,59 +227,73 @@ export default function UsersPage() {
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-700">
+      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50/80 shadow-lg dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900/80 dark:shadow-neutral-900/30">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-neutral-200 bg-neutral-50 text-sm font-medium text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
-              <th className="px-4 py-3 text-left">Name</th>
-              <th className="px-4 py-3 text-left">Email</th>
-              <th className="px-4 py-3 text-left">Role</th>
-              <th className="px-4 py-3 text-left">Status</th>
-              <th className="px-4 py-3 text-left">Department</th>
-              <th className="px-4 py-3 text-left">Location</th>
-              <th className="px-4 py-3 text-left">Last Active</th>
-              <th className="px-4 py-3 text-right">Actions</th>
+            <tr className="border-b border-neutral-200 bg-gradient-to-r from-neutral-50 to-neutral-100 text-sm font-medium text-neutral-600 dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900 dark:text-neutral-300">
+              <th className="px-4 py-4 text-left font-semibold">Name</th>
+              <th className="px-4 py-4 text-left font-semibold">Email</th>
+              <th className="px-4 py-4 text-left font-semibold">Role</th>
+              <th className="px-4 py-4 text-left font-semibold">Status</th>
+              <th className="px-4 py-4 text-left font-semibold">Department</th>
+              <th className="px-4 py-4 text-left font-semibold">Location</th>
+              <th className="px-4 py-4 text-left font-semibold">Last Active</th>
+              <th className="px-4 py-4 text-right font-semibold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user) => (
               <tr
                 key={user.id}
-                className="border-b border-neutral-200 bg-white text-sm dark:border-neutral-700 dark:bg-neutral-800">
-                <td className="px-4 py-3 text-neutral-900 dark:text-white">
-                  {user.name}
+                className="group border-b border-neutral-200 bg-white text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700/50">
+                <td className="px-4 py-4">
+                  <p className="font-medium text-neutral-900 dark:text-white">
+                    {user.name}
+                  </p>
                 </td>
-                <td className="px-4 py-3 text-neutral-600 dark:text-neutral-300">
-                  {user.email}
+                <td className="px-4 py-4">
+                  <p className="text-neutral-600 dark:text-neutral-300">
+                    {user.email}
+                  </p>
                 </td>
-                <td className="px-4 py-3 text-neutral-600 dark:text-neutral-300">
-                  {user.role}
+                <td className="px-4 py-4">
+                  <span className="inline-flex items-center rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-medium text-neutral-700 dark:bg-neutral-700 dark:text-neutral-300">
+                    {user.role}
+                  </span>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-4">
                   <span
-                    className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${
+                    className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${
                       user.status === 'Active'
-                        ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                        : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
+                        ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
+                        : user.status === 'Suspended'
+                        ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
+                        : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
                     }`}>
                     {user.status}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-neutral-600 dark:text-neutral-300">
-                  {user.department}
+                <td className="px-4 py-4">
+                  <p className="text-neutral-600 dark:text-neutral-300">
+                    {user.department}
+                  </p>
                 </td>
-                <td className="px-4 py-3 text-neutral-600 dark:text-neutral-300">
-                  {user.location}
+                <td className="px-4 py-4">
+                  <p className="text-neutral-600 dark:text-neutral-300">
+                    {user.location}
+                  </p>
                 </td>
-                <td className="px-4 py-3 text-neutral-600 dark:text-neutral-300">
-                  {user.lastActive}
+                <td className="px-4 py-4">
+                  <p className="text-neutral-600 dark:text-neutral-300">
+                    {user.lastActive}
+                  </p>
                 </td>
-                <td className="px-4 py-3 text-right">
-                  <div className="flex items-center justify-end gap-2">
-                    <button className="rounded p-1 text-neutral-600 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700">
+                <td className="px-4 py-4 text-right">
+                  <div className="flex items-center justify-end gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <button className="rounded-lg bg-neutral-100 p-2 text-neutral-600 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-600">
                       <IconEdit className="h-4 w-4" />
                     </button>
-                    <button className="rounded p-1 text-red-600 hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-900">
+                    <button className="rounded-lg bg-red-100 p-2 text-red-600 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50">
                       <IconTrash className="h-4 w-4" />
                     </button>
                   </div>
@@ -278,38 +304,53 @@ export default function UsersPage() {
         </table>
       </div>
 
-      <div className="mt-8 rounded-lg border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-medium text-neutral-900 dark:text-white">
-            Recent Activities
-          </h2>
-          <button className="text-sm font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mt-8 overflow-hidden rounded-xl border border-neutral-200 bg-gradient-to-br from-white to-neutral-50/80 p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900/80 dark:shadow-neutral-900/30">
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold bg-gradient-to-r from-neutral-900 to-neutral-600 bg-clip-text text-transparent dark:from-white dark:to-neutral-400">
+              Recent Activities
+            </h2>
+            <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+              Track user activities and interactions
+            </p>
+          </div>
+          <button className="flex items-center gap-2 rounded-lg bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-900 transition-colors hover:bg-neutral-200 dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-600">
             View All
+            <IconChevronRight className="h-4 w-4" />
           </button>
         </div>
         <div className="space-y-4">
-          {recentActivities.map((activity) => (
-            <div
+          {recentActivities.map((activity, idx) => (
+            <motion.div
               key={activity.id}
-              className="flex items-center justify-between rounded-lg border border-neutral-200 p-4 dark:border-neutral-700">
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 + idx * 0.1 }}
+              className="group flex items-center justify-between rounded-xl border border-neutral-200 bg-white p-4 transition-all duration-300 hover:border-neutral-300 hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-neutral-600 dark:hover:bg-neutral-700/50">
               <div className="flex items-center gap-4">
-                <div className="rounded-full bg-neutral-100 p-2 dark:bg-neutral-700">
-                  <IconClock className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+                <div className="rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 p-3 shadow-sm transition-transform duration-300 group-hover:scale-110 dark:from-blue-900/30 dark:to-blue-800/30">
+                  <IconClock className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-neutral-900 dark:text-white">
                     {activity.user} {activity.action}
                   </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     {activity.time}
                   </p>
                 </div>
               </div>
-              <IconChevronRight className="h-4 w-4 text-neutral-400" />
-            </div>
+              <div className="rounded-lg bg-neutral-100 p-2 opacity-0 transition-all duration-300 group-hover:opacity-100 dark:bg-neutral-700">
+                <IconChevronRight className="h-4 w-4 text-neutral-600 dark:text-neutral-300" />
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
