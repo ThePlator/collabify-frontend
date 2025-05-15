@@ -20,11 +20,11 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-6xl">
-              Collaborate Seamlessly with
+              Collaborate. Connect. Sell.
               <span className="relative whitespace-nowrap">
                 <span className="relative bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   {' '}
-                  Collabify
+                  All in One Place
                 </span>
               </span>
             </motion.h1>
@@ -34,9 +34,10 @@ export function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-6 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
-              Transform your team's workflow with our intuitive collaboration
-              platform. Real-time editing, seamless sharing, and powerful tools
-              all in one place.
+              Welcome to Collabify – a platform built for freelancers, business
+              owners, job seekers, digital creators, and educators. From finding
+              talent and landing jobs to selling templates, eBooks, and courses
+              – everything happens here, all in real-time.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -65,22 +66,21 @@ export function HeroSection() {
               className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
                 {
-                  title: 'Real-time Collaboration',
+                  title: 'Real-time Connections',
                   description:
-                    'Work together seamlessly in real-time with your team',
+                    'Freelancers, clients, business owners – all under one roof',
                   icon: '🤝',
                 },
                 {
-                  title: 'Smart Automation',
+                  title: 'Digital Marketplace',
                   description:
-                    'Automate repetitive tasks and boost productivity',
-                  icon: '⚡',
+                    'Sell and buy templates, eBooks, and online courses',
+                  icon: '🛍️',
                 },
                 {
-                  title: 'Secure Sharing',
-                  description:
-                    'Share your work securely with customizable permissions',
-                  icon: '🔒',
+                  title: 'Job Board',
+                  description: 'Post and apply for jobs with ease',
+                  icon: '💼',
                 },
               ].map((feature, idx) => (
                 <motion.div

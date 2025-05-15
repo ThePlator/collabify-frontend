@@ -15,48 +15,45 @@ import {
 export function FeaturesSection() {
   const features = [
     {
-      title: 'Built for developers',
+      title: 'Real-time Connections',
       description:
-        'Built for engineers, developers, dreamers, thinkers and doers.',
+        'Freelancers, clients, business owners – all under one roof.',
       icon: <IconTerminal2 />,
     },
     {
-      title: 'Ease of use',
-      description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
+      title: 'Digital Marketplace',
+      description: 'Sell and buy templates, eBooks, and online courses.',
       icon: <IconEaseInOut />,
     },
     {
-      title: 'Pricing like no other',
-      description:
-        'Our prices are best in the market. No cap, no lock, no credit card required.',
+      title: 'Job Board',
+      description: 'Post and apply for jobs with ease.',
       icon: <IconCurrencyDollar />,
     },
     {
-      title: '100% Uptime guarantee',
-      description: 'We just cannot be taken down by anyone.',
+      title: 'Messaging System',
+      description: 'Seamless communication between all users.',
       icon: <IconCloud />,
     },
     {
-      title: 'Multi-tenant Architecture',
-      description: 'You can simply share passwords instead of buying new seats',
+      title: 'Transparent Pricing',
+      description: 'No hidden charges. Only pay per use.',
       icon: <IconRouteAltLeft />,
     },
     {
-      title: '24/7 Customer Support',
-      description:
-        'We are available a 100% of the time. Atleast our AI Agents are.',
+      title: '24/7 Support',
+      description: "We're here whenever you need us.",
       icon: <IconHelp />,
     },
     {
-      title: 'Money back guarantee',
+      title: 'Freemium Access',
       description:
-        'If you donot like EveryAI, we will convince you to like us.',
+        'Free access to the full platform with no credit card required.',
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: 'And everything else',
-      description: 'I just ran out of copy ideas. Accept my sincere apologies',
+      title: 'Pay-per-Use',
+      description: 'No monthly or yearly fees. You only pay when you benefit.',
       icon: <IconHeart />,
     },
   ];
@@ -69,9 +66,8 @@ export function FeaturesSection() {
           transition={{ duration: 0.5 }}
           className="text-center text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl mb-16">
           <span className="relative bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Features
+            Core Features
           </span>
-          <span> that set us apart</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10">
           {features.map((feature, index) => (

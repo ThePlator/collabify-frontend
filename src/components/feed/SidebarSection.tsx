@@ -171,14 +171,16 @@ export const Logo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
-      <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="font-medium whitespace-pre text-black dark:text-white">
-        Collabify
-      </motion.span>
+      className="relative z-20 flex items-center gap-3 py-2 text-sm font-medium text-neutral-900 dark:text-white">
+      <motion.img
+        src="/Collabify_logo.jpg"
+        alt="Collabify Logo"
+        className="shrink-0 object-contain rounded-lg"
+        initial={{ width: '2rem', height: '2rem' }}
+        animate={{ width: '10rem', height: '3rem' }}
+        transition={{ duration: 0.2 }}
+      />
+      {/* <span className="text-lg font-semibold">Collabify</span> */}
     </a>
   );
 };
@@ -186,8 +188,15 @@ export const LogoIcon = () => {
   return (
     <a
       href="#"
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black">
-      <div className="h-5 w-6 shrink-0 rounded-tl-lg rounded-tr-sm rounded-br-lg rounded-bl-sm bg-black dark:bg-white" />
+      className="relative z-20 flex items-center justify-center py-2 text-sm font-medium text-neutral-900 dark:text-white">
+      <motion.img
+        src="/Collabify_logo.jpg"
+        alt="Collabify Logo"
+        className="shrink-0 object-contain rounded-lg"
+        initial={{ width: '2rem', height: '2rem' }}
+        animate={{ width: '2rem', height: '2rem' }}
+        transition={{ duration: 0.2 }}
+      />
     </a>
   );
 };

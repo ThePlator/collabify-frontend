@@ -15,7 +15,7 @@ export function GlowingEffects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
-            Who We Serves
+            The Future of Work is About Connection
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -23,8 +23,8 @@ export function GlowingEffects() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-lg text-neutral-600 dark:text-neutral-300">
-            Empowering diverse teams and organizations with collaborative
-            solutions
+            The future of work is not about location — it's about connection.
+            And Collabify is here to power that connection.
           </motion.p>
         </div>
 
@@ -32,8 +32,8 @@ export function GlowingEffects() {
           <GridItem
             area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
             icon={<Box className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="Enterprise Teams"
-            description="Serving large organizations with scalable solutions for seamless collaboration and workflow management."
+            title="Enterprise Solutions"
+            description="Empowering large organizations with secure, scalable platforms for seamless team collaboration and project management."
           />
 
           <GridItem
@@ -41,15 +41,15 @@ export function GlowingEffects() {
             icon={
               <Settings className="h-4 w-4 text-black dark:text-neutral-400" />
             }
-            title="Tech Startups"
-            description="Empowering innovative startups with agile tools for rapid development and team coordination."
+            title="Innovative Startups"
+            description="Accelerating growth with agile collaboration tools designed for fast-paced development and efficient team coordination."
           />
 
           <GridItem
             area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
             icon={<Lock className="h-4 w-4 text-black dark:text-neutral-400" />}
-            title="Creative Agencies"
-            description="Supporting creative teams with intuitive tools for design collaboration and project management."
+            title="Creative Teams"
+            description="Enhancing creative workflows with intuitive tools for seamless design collaboration and efficient project delivery."
           />
 
           <GridItem
@@ -57,8 +57,8 @@ export function GlowingEffects() {
             icon={
               <Sparkles className="h-4 w-4 text-black dark:text-neutral-400" />
             }
-            title="Remote Teams"
-            description="Enabling distributed teams to work together effectively with real-time collaboration features."
+            title="Remote Workforce"
+            description="Connecting distributed teams globally with real-time collaboration tools that break down geographical barriers."
           />
 
           <GridItem
@@ -66,8 +66,8 @@ export function GlowingEffects() {
             icon={
               <Search className="h-4 w-4 text-black dark:text-neutral-400" />
             }
-            title="Educational Institutions"
-            description="Facilitating learning and collaboration in academic environments with specialized tools."
+            title="Educational Excellence"
+            description="Transforming academic collaboration with specialized tools that enhance learning and knowledge sharing."
           />
         </ul>
       </div>
