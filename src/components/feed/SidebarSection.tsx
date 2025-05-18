@@ -29,9 +29,12 @@ import { NotificationsSection } from './NotificationsSection';
 import { MessagesSection } from './MessagesSection';
 import { FreelancingSection } from './FreelancingSection';
 import { JobsSection } from './JobsSection';
+import { JobPostingPage } from './JobPostingPage';
 import { MarketplaceSection } from './MarketplaceSection';
 import { ShoppingCartSection } from './ShoppingCartSection';
 import { SupportSection } from './SupportSection';
+import { ContentPostingPage } from './ContentPostingPage';
+import { MilestonePaymentPage } from './MilestonePaymentPage';
 
 export function SidebarSection() {
   const links = [
@@ -89,6 +92,13 @@ export function SidebarSection() {
       href: '/marketplace',
       icon: (
         <IconShoppingCart className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
+      ),
+    },
+    {
+      label: 'Content Posting',
+      href: '/marketplace/post',
+      icon: (
+        <IconBriefcase className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
@@ -224,12 +234,18 @@ const Dashboard = () => {
           <FreelancingSection />
         ) : pathname === '/jobs' ? (
           <JobsSection />
+        ) : pathname === '/jobs/post' ? (
+          <JobPostingPage />
         ) : pathname === '/marketplace' ? (
           <MarketplaceSection />
+        ) : pathname === '/marketplace/post' ? (
+          <ContentPostingPage />
         ) : pathname === '/shoppingcart' ? (
           <ShoppingCartSection />
         ) : pathname === '/support' ? (
           <SupportSection />
+        ) : pathname === '/freelancing/milestones' ? (
+          <MilestonePaymentPage />
         ) : null}
       </div>
       <div className="hidden lg:block overflow-y-auto">

@@ -7,6 +7,7 @@ import {
   IconCalendar,
   IconCurrencyDollar,
   IconX,
+  IconCreditCard,
 } from '@tabler/icons-react';
 
 interface Project {
@@ -69,16 +70,28 @@ export function FreelancingSection() {
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
-        Freelance Projects
-      </motion.h1>
-      <p className="text-neutral-600 dark:text-neutral-400 mb-8">
-        Browse and apply to exciting freelance opportunities that match your
-        skills and interests.
-      </p>
+      <div className="flex justify-between items-start mb-8">
+        <div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+            Freelance Projects
+          </motion.h1>
+          <p className="text-neutral-600 dark:text-neutral-400">
+            Browse and apply to exciting freelance opportunities that match your
+            skills and interests.
+          </p>
+        </div>
+        <motion.button
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          onClick={() => (window.location.href = '/freelancing/milestones')}
+          className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
+          <IconCreditCard className="w-5 h-5" />
+          Milestone Payments
+        </motion.button>
+      </div>
 
       {/* Search and Filter Bar */}
       <div className="bg-white dark:bg-neutral-800 rounded-xl p-4 mb-8 border border-neutral-200 dark:border-neutral-700">

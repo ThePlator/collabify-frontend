@@ -106,17 +106,27 @@ export function JobsSection() {
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
-          Find Your Dream Job
-        </h1>
-        <p className="text-neutral-600 dark:text-neutral-400">
-          Discover opportunities that match your skills and aspirations
-        </p>
-      </motion.div>
+      <div className="flex justify-between items-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+            Find Your Dream Job
+          </h1>
+          <p className="text-neutral-600 dark:text-neutral-400">
+            Discover opportunities that match your skills and aspirations
+          </p>
+        </motion.div>
+        <motion.button
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => (window.location.href = '/jobs/post')}
+          className="px-6 py-3 bg-gradient-to-r from-neutral-900 to-neutral-800 dark:from-white dark:to-neutral-200 text-white dark:text-neutral-900 rounded-xl hover:opacity-90 transition-all duration-300 font-medium shadow-lg flex items-center gap-2">
+          Post a Job
+        </motion.button>
+      </div>
 
       <div className="mb-10">
         <div className="bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-neutral-800 dark:via-neutral-900 dark:to-neutral-950 rounded-xl border border-neutral-200/50 dark:border-neutral-700/50 p-6 backdrop-blur-sm">
