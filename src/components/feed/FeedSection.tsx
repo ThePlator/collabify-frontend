@@ -76,7 +76,7 @@ export function FeedSection() {
   const [postContent, setPostContent] = useState('');
 
   return (
-    <div className="flex flex-1 flex-col gap-4 p-4">
+    <div className="mx-auto w-full max-w-[680px] flex flex-1 flex-col gap-4 p-4">
       {/* Filter Bar */}
       <div className="flex items-center gap-4 rounded-lg bg-gradient-to-r from-indigo-500/10 to-purple-500/10 p-4 backdrop-blur-sm dark:from-indigo-600/20 dark:to-purple-600/20">
         {filterOptions.map((option) => (
@@ -95,7 +95,7 @@ export function FeedSection() {
       </div>
 
       {/* Create Post Section */}
-      <div className="rounded-lg bg-gradient-to-br from-white to-neutral-50 p-4 shadow-lg transition-all duration-300 hover:shadow-xl dark:from-neutral-800 dark:to-neutral-900">
+      <div className="rounded-lg bg-gradient-to-br from-white to-neutral-50 p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:from-neutral-800 dark:to-neutral-900">
         <textarea
           value={postContent}
           onChange={(e) => setPostContent(e.target.value)}
@@ -131,12 +131,12 @@ export function FeedSection() {
         {demoFeedData.map((post) => (
           <div
             key={post.id}
-            className="rounded-lg bg-gradient-to-br from-white to-neutral-50 p-4 shadow-lg transition-all duration-300 hover:shadow-xl dark:from-neutral-800 dark:to-neutral-900">
+            className="rounded-lg bg-gradient-to-br from-white to-neutral-50 p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:from-neutral-800 dark:to-neutral-900">
             <div className="flex items-center gap-3 mb-4">
               <img
                 src={post.user.avatar}
                 alt={post.user.name}
-                className="h-10 w-10 rounded-full object-cover"
+                className="h-12 w-12 rounded-full object-cover"
               />
               <div>
                 <h3 className="font-medium text-neutral-900 dark:text-neutral-100">
@@ -154,21 +154,27 @@ export function FeedSection() {
               <img
                 src={post.image}
                 alt="Post content"
-                className="rounded-lg w-full h-64 object-cover mb-4"
+                className="rounded-lg w-full max-h-[400px] object-cover mb-4"
               />
             )}
             <div className="flex items-center justify-between pt-2 border-t border-neutral-200 dark:border-neutral-700">
               <button className="group flex items-center gap-1 transition-colors">
                 <IconHeart className="h-5 w-5 text-neutral-500 transition-colors group-hover:text-red-500 dark:text-neutral-400 dark:group-hover:text-red-400" />
-                <span className="text-sm text-neutral-500 transition-colors group-hover:text-red-500 dark:text-neutral-400 dark:group-hover:text-red-400">{post.likes}</span>
+                <span className="text-sm text-neutral-500 transition-colors group-hover:text-red-500 dark:text-neutral-400 dark:group-hover:text-red-400">
+                  {post.likes}
+                </span>
               </button>
               <button className="group flex items-center gap-1 transition-colors">
                 <IconMessageCircle className="h-5 w-5 text-neutral-500 transition-colors group-hover:text-indigo-500 dark:text-neutral-400 dark:group-hover:text-indigo-400" />
-                <span className="text-sm text-neutral-500 transition-colors group-hover:text-indigo-500 dark:text-neutral-400 dark:group-hover:text-indigo-400">{post.comments}</span>
+                <span className="text-sm text-neutral-500 transition-colors group-hover:text-indigo-500 dark:text-neutral-400 dark:group-hover:text-indigo-400">
+                  {post.comments}
+                </span>
               </button>
               <button className="group flex items-center gap-1 transition-colors">
                 <IconShare className="h-5 w-5 text-neutral-500 transition-colors group-hover:text-purple-500 dark:text-neutral-400 dark:group-hover:text-purple-400" />
-                <span className="text-sm text-neutral-500 transition-colors group-hover:text-purple-500 dark:text-neutral-400 dark:group-hover:text-purple-400">{post.shares}</span>
+                <span className="text-sm text-neutral-500 transition-colors group-hover:text-purple-500 dark:text-neutral-400 dark:group-hover:text-purple-400">
+                  {post.shares}
+                </span>
               </button>
               <button className="group transition-colors">
                 <IconBookmark className="h-5 w-5 text-neutral-500 transition-colors group-hover:text-pink-500 dark:text-neutral-400 dark:group-hover:text-pink-400" />
